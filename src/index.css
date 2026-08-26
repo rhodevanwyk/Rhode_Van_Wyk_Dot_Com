@@ -1,0 +1,193 @@
+/* =========================================================
+   LOCAL FONTS
+   ========================================================= */
+
+@font-face {
+  font-family: "Extenda";
+  src: url("./fonts/extenda_hecto_trial.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Poppins — uncomment when ready to use body copy
+ *
+ * @font-face {
+ *   font-family: "Poppins";
+ *   src: url("./fonts/poppins_semi_bold.ttf") format("truetype");
+ *   font-weight: 600;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ */
+
+/* =========================================================
+   GLOBAL TOKENS
+   ========================================================= */
+
+:root {
+  --color-yellow: #efff00;
+  --color-purple: #7f00ff;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-display: "Extenda", Impact, Haettenschweiler, sans-serif;
+  /* --font-body: "Poppins", sans-serif; */
+
+  /* 8pt grid (base unit = 8px) */
+  --grid-unit: 8px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+  --space-9: 72px;
+  --space-10: 80px;
+  --space-11: 88px;
+  --space-12: 96px;
+  --space-13: 104px;
+
+  /* Type scale — every size is a multiple of 8px */
+  --text-1: var(--space-1);
+  --text-2: var(--space-2);
+  --text-3: var(--space-3);
+  --text-4: var(--space-4);
+  --text-5: var(--space-5);
+  --text-6: var(--space-6);
+  --text-7: var(--space-7);
+  --text-8: var(--space-8);
+
+  /* Line heights on the 8pt grid (pair with matching text-* sizes) */
+  --leading-1: var(--space-1);
+  --leading-2: var(--space-2);
+  --leading-3: var(--space-3);
+  --leading-4: var(--space-4);
+  --leading-5: var(--space-5);
+  --leading-6: var(--space-6);
+  --leading-7: var(--space-7);
+  --leading-8: var(--space-8);
+
+  /* Frame bar thickness (top / bottom / sides) */
+  --frame-size-desktop: var(--space-12);
+  --frame-size-tablet: var(--space-10);
+  --frame-size-mobile: var(--space-8);
+  --frame-size-small: var(--space-7);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* 16px base keeps rem values on the 8pt scale */
+  font-size: var(--space-2);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-white);
+  color: var(--color-black);
+  font-family: var(--font-display);
+  font-size: var(--text-2);
+  line-height: var(--leading-3);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* =========================================================
+   VERTICAL TEXT TRIM
+   Matches Figma: Cap height → baseline (display text)
+   ========================================================= */
+
+/*
+ * Fallback: stable line-heights on the 8pt grid when trim is unsupported.
+ * Browsers with text-box-trim opt into normal/natural leading below.
+ */
+:is(p, li) {
+  line-height: var(--leading-3);
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  line-height: var(--leading-4);
+  margin: 0;
+}
+
+:is(button, label) {
+  line-height: var(--leading-2);
+}
+
+@supports (text-box-trim: trim-both) {
+  /*
+   * Display & UI copy — cap height to alphabetic baseline (Figma default).
+   */
+  :is(h1, h2, h3, h4, h5, h6, span, button, label) {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+    line-height: normal;
+  }
+
+  /*
+   * Flow copy — cap height at top, text bottom edge keeps descenders (g, y, p…).
+   * trim-both only affects the first/last line, so multi-line rhythm stays intact.
+   */
+  :is(p, li) {
+    text-box-trim: trim-both;
+    text-box-edge: cap text;
+    line-height: var(--leading-3);
+  }
+}
+
+@supports (text-box: trim-both cap alphabetic) {
+  :is(h1, h2, h3, h4, h5, h6, span, button, label) {
+    text-box: trim-both cap alphabetic;
+    line-height: normal;
+  }
+
+  :is(p, li) {
+    text-box: trim-both cap text;
+    line-height: var(--leading-3);
+  }
+}
+
+/* Optional utility for elements outside the default selector list */
+.text-trim {
+  line-height: normal;
+}
+
+@supports (text-box-trim: trim-both) {
+  .text-trim {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+}
+
+@supports (text-box: trim-both cap alphabetic) {
+  .text-trim {
+    text-box: trim-both cap alphabetic;
+  }
+}
