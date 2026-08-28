@@ -11,7 +11,7 @@ const topNavigation = [
 ];
 
 const bottomNavigation = [
-  { label: "ART PIECES", href: "#art", variant: "purple" },
+  { label: "PIECES", href: "#art", variant: "purple" },
   { label: "CAREER", href: "#career", variant: "yellow" },
   { label: "CONTACT", href: "#contact", variant: "purple" },
   { label: "FOOTER", href: "#footer", variant: "yellow" },
@@ -101,7 +101,7 @@ function SocialRail({ side }) {
   );
 }
 
-const LOGO_GRID_CELL_COUNT = 18;
+const LOGO_GRID_CELL_COUNT = 24;
 
 function LogoGrid() {
   return (
