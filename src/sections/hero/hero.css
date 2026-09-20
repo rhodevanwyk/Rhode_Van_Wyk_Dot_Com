@@ -8,19 +8,37 @@
   --hero-black: #000000;
   --hero-white: #ffffff;
 
+  /*
+    IMPORTANT:
+    This frame system stays exactly the same.
+
+    Desktop  = 96px
+    Tablet   = 80px
+    Mobile   = 64px
+    Small    = 56px
+  */
+
   --frame-size: var(--frame-size-desktop);
 
   display: grid;
-  grid-template-columns: var(--frame-size) minmax(0, 1fr) var(--frame-size);
-  grid-template-rows: var(--frame-size) minmax(0, 1fr) var(--frame-size);
+
+  grid-template-columns:
+    var(--frame-size)
+    minmax(0, 1fr)
+    var(--frame-size);
+
+  grid-template-rows:
+    var(--frame-size)
+    minmax(0, 1fr)
+    var(--frame-size);
 
   grid-template-areas:
-    "top   top   top"
-    "left  content right"
+    "top top top"
+    "left content right"
     "bottom bottom bottom";
 
+  width: 100%;
   height: 100svh;
-  width: 100%;
 
   background: var(--hero-white);
   color: var(--hero-black);
@@ -28,153 +46,6 @@
   overflow: hidden;
 }
 
-/* =========================================================
-   TOP / BOTTOM NAVIGATION
-   ========================================================= */
-
-.hero-navigation {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  width: 100%;
-  height: var(--frame-size);
-
-  overflow: hidden;
-}
-
-.hero-navigation--top {
-  grid-area: top;
-}
-
-.hero-navigation--bottom {
-  grid-area: bottom;
-}
-
-.hero-navigation__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 0;
-  height: 100%;
-
-  padding: 12px var(--space-2) 0;
-
-  box-sizing: border-box;
-
-  color: var(--hero-black);
-  text-decoration: none;
-
-  font-family: var(--font-display);
-  font-size: var(--text-8);
-  font-weight: 400;
-
-  letter-spacing: 0;
-  line-height: 1;
-
-  text-align: center;
-  text-transform: uppercase;
-
-  white-space: nowrap;
-}
-
-@supports (text-box-trim: trim-both) {
-  .hero-navigation__item {
-    text-box-trim: trim-both;
-    text-box-edge: cap alphabetic;
-  }
-}
-
-@supports (text-box: trim-both cap alphabetic) {
-  .hero-navigation__item {
-    text-box: trim-both cap alphabetic;
-    line-height: normal;
-  }
-}
-
-.hero-navigation__item:focus-visible {
-  outline: var(--grid-unit) solid var(--hero-black);
-  outline-offset: calc(var(--grid-unit) * -1);
-}
-
-.hero-navigation__item--purple {
-  background: var(--hero-purple);
-  color: var(--hero-white);
-}
-
-.hero-navigation__item--yellow {
-  background: var(--hero-yellow);
-  color: var(--hero-black);
-}
-
-/* =========================================================
-   SOCIAL SIDE RAILS
-   ========================================================= */
-
-.hero-social-rail {
-  width: 100%;
-  height: 100%;
-
-  min-width: 0;
-  min-height: 0;
-
-  background: var(--hero-black);
-}
-
-.hero-social-rail--left {
-  grid-area: left;
-}
-
-.hero-social-rail--right {
-  grid-area: right;
-}
-
-.hero-social-rail__links {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: space-evenly;
-
-  gap: var(--space-4);
-
-  width: 100%;
-  height: 100%;
-
-  padding: var(--space-4) 0;
-}
-
-/* =========================================================
-   SOCIAL BUTTONS
-   ========================================================= */
-
-.hero-social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  width: var(--space-6);
-  height: var(--space-6);
-
-  border-radius: 50%;
-  background: var(--hero-white);
-}
-
-.hero-social-link:focus-visible {
-  outline: var(--grid-unit) solid var(--hero-yellow);
-  outline-offset: var(--grid-unit);
-}
-
-.hero-social-link__icon {
-  display: block;
-
-  width: var(--space-3);
-  height: var(--space-3);
-
-  object-fit: contain;
-}
 
 /* =========================================================
    MAIN HERO CONTENT
@@ -194,6 +65,7 @@
   overflow: hidden;
 }
 
+
 /* =========================================================
    LOGO GRID — DESKTOP
    ========================================================= */
@@ -201,18 +73,27 @@
 .hero-logo-grid {
   display: grid;
 
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+
+  grid-template-rows:
+    repeat(4, minmax(0, 1fr));
 
   width: 100%;
   height: 100%;
 
   gap: 0;
+
   padding: 0;
   margin: 0;
 
   overflow: hidden;
 }
+
+
+/* =========================================================
+   LOGO GRID CELLS
+   ========================================================= */
 
 .hero-logo-grid__cell {
   display: flex;
@@ -234,6 +115,11 @@
   background: var(--hero-white);
 }
 
+
+/* =========================================================
+   LOGO IMAGE
+   ========================================================= */
+
 .hero-logo-grid__image {
   display: block;
 
@@ -243,6 +129,9 @@
   min-width: 0;
   min-height: 0;
 
+  max-width: none;
+  max-height: none;
+
   margin: 0;
   padding: 0;
 
@@ -250,123 +139,44 @@
   object-position: center;
 }
 
+
 /* =========================================================
    TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
+
   .hero {
     --frame-size: var(--frame-size-tablet);
   }
 
-  .hero-navigation__item {
-    font-size: var(--text-6);
-    padding: 12px var(--space-2) 0;
-  }
 
-  .hero-social-rail__links {
-    gap: var(--space-3);
-    padding: var(--space-3) 0;
-  }
+  /* -------------------------------------------------------
+     TABLET LOGO GRID
 
-  .hero-social-link {
-    width: var(--space-5);
-    height: var(--space-5);
-  }
-
-  .hero-social-link__icon {
-    width: var(--space-2);
-    height: var(--space-2);
-  }
-
-  /*
-     TABLET
      3 COLUMNS
      5 ROWS
      15 LOGOS
-  */
+     ------------------------------------------------------- */
 
   .hero-logo-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    grid-template-rows:
+      repeat(5, minmax(0, 1fr));
 
     gap: 0;
+
     padding: 0;
     margin: 0;
   }
+
 
   .hero-logo-grid__cell:nth-child(n + 16) {
     display: none;
   }
 
-  .hero-logo-grid__image {
-    width: 100%;
-    height: 100%;
-
-    max-width: none;
-    max-height: none;
-
-    margin: 0;
-    padding: 0;
-
-    object-fit: contain;
-  }
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-  .hero {
-    --frame-size: var(--frame-size-mobile);
-  }
-
-  .hero-social-rail__links {
-    padding: var(--space-2) 0;
-    gap: var(--space-2);
-  }
-
-  .hero-social-link {
-    width: var(--space-4);
-    height: var(--space-4);
-  }
-
-  .hero-social-link__icon {
-    width: var(--space-2);
-    height: var(--space-2);
-  }
-
-  /*
-     MOBILE
-     1 COLUMN
-     5 ROWS
-     5 LOGOS
-  */
-
-  .hero-logo-grid {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(5, minmax(0, 1fr));
-
-    width: 100%;
-    height: 100%;
-
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  .hero-logo-grid__cell:nth-child(n + 6) {
-    display: none;
-  }
-
-  .hero-logo-grid__cell {
-    width: 100%;
-    height: 100%;
-
-    padding: 0;
-    margin: 0;
-  }
 
   .hero-logo-grid__image {
     width: 100%;
@@ -381,59 +191,58 @@
     object-fit: contain;
     object-position: center;
   }
-
-  /*
-     MOBILE NAVIGATION
-  */
-
-  .hero-navigation__item {
-    padding: 8px 2px 0;
-
-    font-size: var(--text-5);
-    line-height: 1;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: clip;
-  }
 }
 
+
 /* =========================================================
-   VERY SMALL PHONES
+   MOBILE
    ========================================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 600px) {
+
   .hero {
-    --frame-size: var(--frame-size-small);
+    --frame-size: var(--frame-size-mobile);
   }
 
-  .hero-navigation__item {
-    padding: 8px 2px 0;
-    font-size: var(--text-4);
-  }
 
-  .hero-social-link {
-    width: var(--space-3);
-    height: var(--space-3);
-  }
+  /* -------------------------------------------------------
+     MOBILE LOGO GRID
 
-  .hero-social-link__icon {
-    width: var(--space-2);
-    height: var(--space-2);
-  }
+     1 COLUMN
+     5 ROWS
+     5 LOGOS
+     ------------------------------------------------------- */
 
   .hero-logo-grid {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    grid-template-rows:
+      repeat(5, minmax(0, 1fr));
+
+    width: 100%;
+    height: 100%;
 
     gap: 0;
+
     padding: 0;
     margin: 0;
   }
 
+
   .hero-logo-grid__cell:nth-child(n + 6) {
     display: none;
   }
+
+
+  .hero-logo-grid__cell {
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+  }
+
 
   .hero-logo-grid__image {
     width: 100%;
@@ -446,5 +255,52 @@
     padding: 0;
 
     object-fit: contain;
+    object-position: center;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .hero {
+    --frame-size: var(--frame-size-small);
+  }
+
+
+  .hero-logo-grid {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    grid-template-rows:
+      repeat(5, minmax(0, 1fr));
+
+    gap: 0;
+
+    padding: 0;
+    margin: 0;
+  }
+
+
+  .hero-logo-grid__cell:nth-child(n + 6) {
+    display: none;
+  }
+
+
+  .hero-logo-grid__image {
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+
+    margin: 0;
+    padding: 0;
+
+    object-fit: contain;
+    object-position: center;
   }
 }

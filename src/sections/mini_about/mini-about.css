@@ -1,0 +1,524 @@
+/* =========================================================
+   MINI ABOUT
+   ========================================================= */
+
+.mini-about {
+  --mini-black: var(--color-black);
+  --mini-white: var(--color-white);
+  --mini-purple: var(--color-purple);
+  --mini-yellow: var(--color-yellow);
+
+  /*
+    Same frame logic as the Hero.
+
+    Desktop:
+    96px top
+    96px bottom
+    96px left
+    96px right
+  */
+  --mini-frame: var(--frame-size-desktop);
+
+  display: grid;
+
+  grid-template-columns:
+    var(--mini-frame)
+    minmax(0, 1fr)
+    var(--mini-frame);
+
+  grid-template-rows:
+    var(--mini-frame)
+    minmax(0, 1fr)
+    var(--mini-frame);
+
+  grid-template-areas:
+    "top top top"
+    "left content right"
+    "bottom bottom bottom";
+
+  width: 100%;
+  min-height: fit-content;
+
+  background: var(--mini-black);
+  color: var(--mini-white);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN CONTENT FRAME
+   ========================================================= */
+
+.mini-about__content {
+  grid-area: content;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(80px, 0.5fr)
+    minmax(280px, 2fr)
+    minmax(120px, 1fr)
+    minmax(150px, 1fr);
+
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  background: var(--mini-black);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   LEFT GRAPHIC
+   ========================================================= */
+
+.mini-about__graphic--left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  min-height: 0;
+
+  height: 100%;
+}
+
+
+/* =========================================================
+   ABOUT COPY
+   ========================================================= */
+
+.mini-about__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.mini-about__copy p {
+  margin: 0;
+
+  color: var(--mini-white);
+
+  font-family: var(--font-body);
+  font-size: var(--text-2);
+
+  text-wrap: balance;
+}
+
+.mini-about__copy p + p {
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.mini-about__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: var(--space-1);
+
+  min-width: 0;
+}
+
+.mini-about__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100%;
+
+  padding: var(--space-2);
+
+  background: var(--mini-white);
+  color: var(--mini-black);
+
+  font-family: var(--font-body);
+  font-size: var(--text-2);
+
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.mini-about__button:hover {
+  background: var(--mini-yellow);
+  color: var(--mini-black);
+}
+
+.mini-about__button:focus-visible {
+  outline: var(--grid-unit) solid var(--mini-yellow);
+  outline-offset: calc(var(--grid-unit) * -1);
+}
+
+
+/* =========================================================
+   RIGHT GRAPHIC
+   ========================================================= */
+
+.mini-about__graphic--right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  min-height: 0;
+
+  height: 100%;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .mini-about {
+    --mini-frame: var(--frame-size-tablet);
+  }
+
+  .mini-about__content {
+    grid-template-columns:
+      minmax(55px, 0.5fr)
+      minmax(220px, 2.5fr)
+      minmax(105px, 0.8fr)
+      minmax(120px, 1.2fr);
+
+    padding: var(--space-3);
+  }
+
+  .mini-about__copy {
+    padding-inline: var(--space-2);
+  }
+
+  .mini-about__copy p {
+    font-size: var(--text-1);
+    line-height: 1.4;
+  }
+
+  .mini-about__actions {
+    padding-inline: var(--space-1);
+    gap: var(--space-2);
+  }
+
+  .mini-about__button {
+    min-height: var(--space-5);
+    font-size: var(--text-1);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .mini-about {
+    --mini-frame: var(--frame-size-mobile);
+
+    min-height: 100svh;
+  }
+
+  /*
+    ---------------------------------------------------------
+    MOBILE STRUCTURE
+    ---------------------------------------------------------
+
+    TOP:
+
+    ┌────────────┬────────────────────────┐
+    │            │                        │
+    │   ARROW    │       PARAGRAPH        │
+    │            │                        │
+    │            │                        │
+    └────────────┴────────────────────────┘
+
+    BOTTOM:
+
+    ┌────────────────────┬────────────────┐
+    │                    │                │
+    │      BUTTONS       │     EARTH      │
+    │                    │                │
+    └────────────────────┴────────────────┘
+  */
+
+  .mini-about__content {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    grid-template-rows:
+      3fr
+      2fr;
+
+    grid-template-areas:
+      "left copy"
+      "actions right";
+
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: var(--space-2);
+  }
+
+
+  /* =======================================================
+     MOBILE ARROW
+     ======================================================= */
+
+  .mini-about__graphic--left {
+    grid-area: left;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    align-self: start;
+  }
+
+  .mini-about__graphic--left img {
+    display: block;
+
+    width: var(--space-7);
+    height: auto;
+
+    max-width: 100%;
+  }
+
+
+  /* =======================================================
+     MOBILE TEXT
+     ======================================================= */
+
+  .mini-about__copy {
+    grid-area: copy;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+
+    padding: 0 0 0 var(--space-2);
+  }
+
+  .mini-about__copy p {
+    margin: 0;
+
+    font-size: var(--text-1);
+    line-height: 1.4;
+
+    text-align: left;
+
+    text-wrap: balance;
+  }
+
+
+  /* =======================================================
+     MOBILE BUTTONS
+     ======================================================= */
+
+  .mini-about__actions {
+    grid-area: actions;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    gap: var(--space-2);
+
+    padding: var(--space-2) var(--space-1) var(--space-1) 0;
+  }
+
+  .mini-about__button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: var(--space-5);
+
+    padding: var(--space-2) var(--space-1);
+
+    font-size: var(--text-1);
+  }
+
+
+  /* =======================================================
+     MOBILE EARTH
+     ======================================================= */
+
+  .mini-about__graphic--right {
+    grid-area: right;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: var(--space-2) 0 var(--space-1) var(--space-1);
+  }
+
+  .mini-about__graphic--right img {
+    display: block;
+
+    width: var(--space-8);
+    height: auto;
+
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .mini-about {
+    --mini-frame: var(--frame-size-small);
+  }
+
+  .mini-about__content {
+    padding: var(--space-2) var(--space-1);
+  }
+
+  .mini-about__graphic--left img {
+    width: var(--space-6);
+  }
+
+  .mini-about__copy {
+    padding-left: var(--space-1);
+  }
+
+  .mini-about__copy p {
+    font-size: var(--text-1);
+    line-height: 1.4;
+  }
+
+  .mini-about__actions {
+    gap: var(--space-1);
+
+    padding-right: var(--space-1);
+  }
+
+  .mini-about__button {
+    min-height: var(--space-5);
+
+    padding: var(--space-1);
+
+    font-size: var(--text-1);
+  }
+
+  .mini-about__graphic--right {
+    padding-left: var(--space-1);
+  }
+
+  .mini-about__graphic--right img {
+    width: var(--space-7);
+  }
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .mini-about {
+    min-height: 100svh;
+  }
+
+  .mini-about__content {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 3fr)
+      minmax(0, 1.5fr)
+      minmax(0, 2fr);
+
+    grid-template-rows: 1fr;
+
+    grid-template-areas:
+      "left copy actions right";
+
+    padding: var(--space-2);
+  }
+
+  .mini-about__graphic--left,
+  .mini-about__graphic--right {
+    height: 100%;
+    padding: 0;
+  }
+
+  .mini-about__graphic--left img {
+    width: var(--space-6);
+    max-width: 100%;
+  }
+
+  .mini-about__copy {
+    height: 100%;
+    padding-inline: var(--space-1);
+  }
+
+  .mini-about__copy p {
+    font-size: var(--text-1);
+    line-height: 1.35;
+  }
+
+  .mini-about__actions {
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0;
+  }
+
+  .mini-about__button {
+    min-height: var(--space-5);
+  }
+
+  .mini-about__graphic--right img {
+    width: var(--space-7);
+    max-width: 100%;
+  }
+}

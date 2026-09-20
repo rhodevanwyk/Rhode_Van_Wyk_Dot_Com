@@ -1,11 +1,17 @@
 import Hero from "./sections/hero/Hero.jsx";
+import MiniAbout from "./sections/mini_about/MiniAbout.jsx";
 
-function App() {
+import SiteFrame from "./components/site_frame/SiteFrame.jsx";
+
+export default function Home() {
   return (
     <>
-      <Hero />
+      <SiteFrame />
+
+      <main>
+        <Hero />
+        <MiniAbout />
+      </main>
     </>
   );
 }
-
-export default App;

@@ -1,0 +1,296 @@
+/* =========================================================
+   SITE FRAME
+   ========================================================= */
+
+.site-navigation {
+  position: fixed;
+
+  z-index: 1111;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  width: 100%;
+  height: var(--frame-size-desktop);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TOP NAVIGATION
+   ========================================================= */
+
+.site-navigation--top {
+  top: 0;
+  left: 0;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+   ========================================================= */
+
+.site-navigation--bottom {
+  bottom: 0;
+  left: 0;
+}
+
+
+/* =========================================================
+   NAVIGATION ITEMS
+   ========================================================= */
+
+.site-navigation__item {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  height: 100%;
+
+  padding: 12px var(--space-2) 0;
+
+  box-sizing: border-box;
+
+  color: var(--color-black);
+
+  font-family: var(--font-display);
+
+  font-size: var(--text-8);
+  font-weight: 400;
+
+  line-height: 1;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   NAV COLORS
+   ========================================================= */
+
+.site-navigation__item--purple {
+  background: var(--color-purple);
+  color: var(--color-white);
+}
+
+.site-navigation__item--yellow {
+  background: var(--color-yellow);
+  color: var(--color-black);
+}
+
+
+/* =========================================================
+   NAV FOCUS
+   ========================================================= */
+
+.site-navigation__item:focus-visible {
+  outline: var(--grid-unit) solid var(--color-black);
+  outline-offset: calc(var(--grid-unit) * -1);
+}
+
+
+/* =========================================================
+   SOCIAL RAILS
+   ========================================================= */
+
+.site-social-rail {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+
+  z-index: 1000;
+
+  width: var(--frame-size-desktop);
+
+  background: var(--color-black);
+}
+
+
+.site-social-rail--left {
+  left: 0;
+}
+
+
+.site-social-rail--right {
+  right: 0;
+}
+
+
+/* =========================================================
+   SOCIAL LINKS
+   ========================================================= */
+
+.site-social-rail__links {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-evenly;
+
+  gap: var(--space-4);
+
+  width: 100%;
+  height: 100%;
+
+  padding: var(--space-4) 0;
+}
+
+
+.site-social-link {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: var(--space-6);
+  height: var(--space-6);
+
+  border-radius: 50%;
+
+  background: var(--color-white);
+}
+
+
+.site-social-link:focus-visible {
+  outline: var(--grid-unit) solid var(--color-yellow);
+  outline-offset: var(--grid-unit);
+}
+
+
+.site-social-link__icon {
+  display: block;
+
+  width: var(--space-3);
+  height: var(--space-3);
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .site-navigation {
+    height: var(--frame-size-tablet);
+  }
+
+  .site-navigation__item {
+    padding: 12px var(--space-2) 0;
+
+    font-size: var(--text-6);
+  }
+
+  .site-social-rail {
+    width: var(--frame-size-tablet);
+  }
+
+  .site-social-rail__links {
+    gap: var(--space-3);
+
+    padding: var(--space-3) 0;
+  }
+
+  .site-social-link {
+    width: var(--space-5);
+    height: var(--space-5);
+  }
+
+  .site-social-link__icon {
+    width: var(--space-2);
+    height: var(--space-2);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .site-navigation {
+    height: var(--frame-size-mobile);
+  }
+
+  .site-navigation__item {
+    padding: 8px 2px 0;
+
+    font-size: var(--text-5);
+
+    line-height: 1;
+
+    white-space: nowrap;
+  }
+
+  .site-social-rail {
+    width: var(--frame-size-mobile);
+  }
+
+  .site-social-rail__links {
+    padding: var(--space-2) 0;
+
+    gap: var(--space-2);
+  }
+
+  .site-social-link {
+    width: var(--space-4);
+    height: var(--space-4);
+  }
+
+  .site-social-link__icon {
+    width: var(--space-2);
+    height: var(--space-2);
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .site-navigation {
+    height: var(--frame-size-small);
+  }
+
+  .site-navigation__item {
+    padding: 8px 2px 0;
+
+    font-size: var(--text-4);
+  }
+
+  .site-social-rail {
+    width: var(--frame-size-small);
+  }
+
+  .site-social-link {
+    width: var(--space-3);
+    height: var(--space-3);
+  }
+
+  .site-social-link__icon {
+    width: var(--space-2);
+    height: var(--space-2);
+  }
+}
